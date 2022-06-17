@@ -1,15 +1,27 @@
-
-
 let content = [
 	"art/alien_1.png",
 	"art/missile.png",
 	"art/space_ship.png",
+	//Old buttons
 	"buttons/left_down.png",
 	"buttons/left_up.png",
 	"buttons/right_down.png",
 	"buttons/right_up.png",
 	//Sound from Zapsplat.com
-	"music/gameloop.mp3"
+	"music/gameloop.mp3",
+	//Button Overhaul
+	"b/left_down.png",
+	"b/left_up.png",
+	"b/right_down.png",
+	"b/right_up.png",
+	"b/shoot_down.png",
+	"b/shoot_up.png",
+
+	"art/space.png",
+	"sfx/laser1.wav",
+	
+	"music/nightmare_intro.mp3",
+	"music/nightmare_loop.mp3",
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
@@ -18,4 +30,4 @@ g.scaleToWindow();
 g.start();
 
 //Declare any variables that need to be used in more than one function
-let aliens, missles, score;
+let aliens, missiles, score, timer,loopStatus, loop, speed;

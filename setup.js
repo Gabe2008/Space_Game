@@ -1,23 +1,37 @@
 function setup() {
+
+	space = g.tilingSprite(
+		"art/space.png", //The image to use
+		g.canvas.width, //The width
+		g.canvas.height, //The height
+	);
+
 	aliens = g.group();
-	missles = g.group();
+	missiles = g.group();
 
 	ship = g.sprite("art/space_ship.png");
-	ship.setPosition(540, 1700);
+	ship.setPosition(g.canvas.width / 2, g.canvas.height - 450);
 	ship.anchor.set(0.5, 0.5);
-	ship.scale.set(2, 2)
+	ship.scale.set(10, 10)
+	var shipBreathe = g.breathe(ship, 2, 2, 60, false, 0);
 
-	let music = g.sound("music/gameloop.mp3");
-	music.loop = true;
-	music.play();
+	let intro = g.sound("music/nightmare_intro.mp3");
+	intro.play();
+	loop = g.sound("music/nightmare_loop.mp3");
+	loopStatus = false;
+	loop.loop = true;
+	speed = 10;
+	//let music = g.sound("music/gameloop.mp3");
+	//music.loop = true;
+	//music.play();
 
 	let left = g.button([
-		"buttons/left_up.png",
-		"buttons/left_down.png"
+		"b/left_up.png",
+		"b/left_down.png"
 	]);
-	
-	left.scale.set(2, 2);
-	left.setPosition(left.width + 10, 1750);
+
+	left.scale.set(3, 3);
+	left.setPosition(left.width - left.width / 3, 1750);
 	left.anchor.set(0.5, 0.5);
 
 	left.press = function () {
@@ -34,12 +48,12 @@ function setup() {
 	};
 
 	let right = g.button([
-		"buttons/right_up.png",
-		"buttons/right_down.png"
+		"b/right_up.png",
+		"b/right_down.png"
 	]);
 
-	right.scale.set(2, 2);
-	right.setPosition(g.canvas.width - right.width - 10, 1750);
+	right.scale.set(3, 3);
+	right.setPosition(g.canvas.width - right.width + right.width / 3, 1750);
 	right.anchor.set(0.5, 0.5);
 
 	right.press = function () {
@@ -54,6 +68,23 @@ function setup() {
 
 		}
 	};
-	
+
+	let laserSound = g.sound("sfx/laser1.wav");
+
+	let shoot = g.button([
+		"b/shoot_up.png",
+		"b/shoot_down.png"
+	]);
+
+	shoot.scale.set(3, 3);
+	shoot.setPosition(g.canvas.width / 2, 1750);
+	shoot.anchor.set(0.5, 0.5);
+
+	shoot.press = function () {
+		fire(ship.x, ship.y)
+		laserSound.play();
+	};
+
+	timer = 0;
 	g.state = play;
 }
