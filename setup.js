@@ -12,18 +12,21 @@ function setup() {
 	ship = g.sprite("art/space_ship.png");
 	ship.setPosition(g.canvas.width / 2, g.canvas.height - 450);
 	ship.anchor.set(0.5, 0.5);
-	ship.scale.set(10, 10)
-	var shipBreathe = g.breathe(ship, 2, 2, 60, false, 0);
+	ship.scale.set(2,2)
+	//ship.scale.set(10, 10)
+	//var shipBreathe = g.breathe(ship, 2, 2, 60, false, 0);
 
-	let intro = g.sound("music/nightmare_intro.mp3");
-	intro.play();
-	loop = g.sound("music/nightmare_loop.mp3");
-	loopStatus = false;
-	loop.loop = true;
+	//let intro = g.sound("music/nightmare_intro.mp3");
+	//intro.play();
+	//loop = g.sound("music/nightmare_loop.mp3");
+	//loopStatus = false;
+	//loop.loop = true;
+
 	speed = 10;
-	//let music = g.sound("music/gameloop.mp3");
-	//music.loop = true;
-	//music.play();
+
+	let music = g.sound("music/gameloop.mp3");
+	music.loop = true;
+	music.play();
 
 	let left = g.button([
 		"b/left_up.png",
@@ -80,9 +83,15 @@ function setup() {
 	shoot.setPosition(g.canvas.width / 2, 1750);
 	shoot.anchor.set(0.5, 0.5);
 
+	let lastShot = 0
+
 	shoot.press = function () {
-		fire(ship.x, ship.y)
-		laserSound.play();
+		if (timer - lastShot > 0.3) {
+			fire(ship.x, ship.y)
+			laserSound.play();
+			lastShot = timer;
+			console.log(lastShot)
+		}
 	};
 
 	timer = 0;

@@ -22,6 +22,8 @@ let content = [
 	
 	"music/nightmare_intro.mp3",
 	"music/nightmare_loop.mp3",
+	"art/ufo_alien.png",
+	"art/boom.png",
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
