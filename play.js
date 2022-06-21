@@ -115,7 +115,7 @@ function play() {
 	}
 
 	if (timer - meteorSpawn > meteorI) {
-		spawn(random(100, 980, true), 0, 8, 3, "art/meteor1b.png", meteors)
+		spawn(random(100, 980, true), 0, 8, 3, "art/meteor1.png", meteors)
 		meteorSpawn = timer;
 		meteorI = random(0, 6, false);
 	}

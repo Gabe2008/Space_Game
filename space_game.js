@@ -25,7 +25,7 @@ let content = [
 	"art/ufo_alien.png",
 	"art/boom.png",
 	"art/boom2.png",
-	"art/meteor1b.png",
+	"art/meteor1.png",
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
