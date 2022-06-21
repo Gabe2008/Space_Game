@@ -24,6 +24,8 @@ let content = [
 	"music/nightmare_loop.mp3",
 	"art/ufo_alien.png",
 	"art/boom.png",
+	"art/boom2.png",
+	"art/meteor1b.png",
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
@@ -32,4 +34,4 @@ g.scaleToWindow();
 g.start();
 
 //Declare any variables that need to be used in more than one function
-let aliens, missiles, score, timer,loopStatus, loop, speed;
+let aliens, missiles, meteors, score, timer,loopStatus, loop, speed;

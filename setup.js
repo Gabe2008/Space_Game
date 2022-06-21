@@ -8,11 +8,12 @@ function setup() {
 
 	aliens = g.group();
 	missiles = g.group();
+	meteors = g.group();
 
 	ship = g.sprite("art/space_ship.png");
 	ship.setPosition(g.canvas.width / 2, g.canvas.height - 450);
 	ship.anchor.set(0.5, 0.5);
-	ship.scale.set(2,2)
+	ship.scale.set(2, 2)
 	//ship.scale.set(10, 10)
 	//var shipBreathe = g.breathe(ship, 2, 2, 60, false, 0);
 
@@ -87,7 +88,48 @@ function setup() {
 
 	shoot.press = function () {
 		if (timer - lastShot > 0.3) {
-			fire(ship.x, ship.y)
+			//fire(ship.x, ship.y)
+			//now using better spawn command
+			spawn(ship.x, ship.y, -15, .6, "art/missile.png", missiles)
+
+			laserSound.play();
+			lastShot = timer;
+			console.log(lastShot)
+		}
+	};
+
+	let leftArrow = g.keyboard(37),
+		spaceKey = g.keyboard(32),
+		rightArrow = g.keyboard(39);
+
+	rightArrow.press = function () {
+		//console.log("pressed");
+		ship.vx = 8;
+	};
+	rightArrow.release = function () {
+		//console.log("released");
+		if (ship.vx == 8) {
+			ship.vx = 0;
+		}
+	};
+
+	leftArrow.press = function () {
+		//console.log("pressed");
+		ship.vx = -8;
+	};
+	leftArrow.release = function () {
+		//console.log("released");
+		if (ship.vx == -8) {
+			ship.vx = 0;
+		}
+	};
+
+	spaceKey.press = function () {
+		if (timer - lastShot > 0.3) {
+			//fire(ship.x, ship.y)
+			//now using better spawn command
+			spawn(ship.x, ship.y, -15, 1.2, "art/missile.png", missiles)
+
 			laserSound.play();
 			lastShot = timer;
 			console.log(lastShot)

@@ -5,3 +5,5 @@ function fire(x, y) {
 	missile.anchor.set(0.5, 0.5);
 	missiles.addChild(missile);
 }
+
+//switched to spawn.js
