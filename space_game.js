@@ -25,7 +25,9 @@ let content = [
 	"art/ufo_alien.png",
 	"art/boom.png",
 	"art/boom2.png",
-	"art/meteor1.png",
+	"art/meteor1c.png",
+	"b/start_up.png",
+	"b/start_down.png",
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
@@ -34,4 +36,4 @@ g.scaleToWindow();
 g.start();
 
 //Declare any variables that need to be used in more than one function
-let aliens, missiles, meteors, score, timer,loopStatus, loop, speed;
+let ship, aliens, missiles, meteors, score, timer,loopStatus, loop, speed, gameScene, music, title;

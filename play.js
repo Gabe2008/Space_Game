@@ -97,25 +97,25 @@ function play() {
 		});
 	});
 
-	space.tileY += speed;
+	space.tileY += 10;
 	timer += 1 / 60;
 	//console.log(Math.floor(timer));
 
 	if (timer - ufoSpawn > ufoInterval) {
-		spawn(random(100, 980, true), 0, 6, 3, "art/ufo_alien.png", aliens)
+		spawn(random(100, 980, true), 0, 6, 3, "art/ufo_alien.png", aliens, 0.5, 0.5)
 		ufoSpawn = timer;
 		ufoInterval = random(0, 3, false);
 		//console.log(ufoSpawn);
 	}
 
 	if (timer - a1Spawn > a1Int) {
-		spawn(random(100, 980, true), 0, 5, 1.2, "art/alien_1.png", aliens)
+		spawn(random(100, 980, true), 0, 5, 1.2, "art/alien_1.png", aliens, 0.5, 0.5)
 		a1Spawn = timer;
 		a1Int = random(2, 4, false);
 	}
 
 	if (timer - meteorSpawn > meteorI) {
-		spawn(random(100, 980, true), 0, 8, 3, "art/meteor1.png", meteors)
+		spawn(random(100, 980, true), 0, 8, 1, "art/meteor1c.png", meteors, 0.5, 0)
 		meteorSpawn = timer;
 		meteorI = random(0, 6, false);
 	}
