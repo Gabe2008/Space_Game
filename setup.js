@@ -1,11 +1,22 @@
 function setup() {
+	
+	space = g.tilingSprite(
+		"art/space.png", //The image to use
+		g.canvas.width, //The width
+		g.canvas.height, //The height
+	);
+	
+	explosion1 = g.sound("sfx/8bit_bomb_explosion.wav");
+	explosion2 = g.sound("sfx/8bit_bomb_explosion.wav");
 
 	gameScene = g.group();
 	soundScene = g.group();
+	endScene = g.group();
 
-	title = g.text("Space_Game", null, "000000", g.canvas.width / 2, g.canvas.height / 2);
+	title = g.text("Space_Game", "20px PetMe64", "00FF00", g.canvas.width / 2, g.canvas.height / 2);
 	title.anchor.set(0.5, 0.5);
 	title.scale.set(5);
+	let titlePulse = g.pulse(title, 60, 0);
 	soundScene.addChild(title);
 
 	let start = g.button([
@@ -16,30 +27,39 @@ function setup() {
 	music = g.sound("music/gameloop.mp3");
 	music.loop = true;
 	//music.play();
+	music.volume = 0.4;
+	
+	menuMusic = g.sound("music/briefing.ogg");
+	menuMusic.loop = true;
+	//music.play();
+	menuMusic.volume = 0.7;
+	menuMusic.play();
+	menuMusic.fadeIn(0.5);
 
 	soundScene.addChild(start);
 	start.scale.set(3, 3);
-	start.setPosition(g.canvas.width / 2, g.canvas.height / 2 + 200);
+	start.setPosition(g.canvas.width / 2, g.canvas.height / 2 + 2000);
 	start.anchor.set(0.5, 0.5);
+	let startSlide = g.slide(start, start.x, g.canvas.height / 2 + 200, 120, "bounce 5 -5", false, 0);
 
-	start.press = function () {
+	start.release = function () {
+		menuMusic.fadeOut(0.5);
 		music.play();
+		music.fadeIn(1);
 		gameScene.visible = true;
 		soundScene.visible = false;
 		g.state = play;
+		start.destroy;
 	};
 
-	space = g.tilingSprite(
-		"art/space.png", //The image to use
-		g.canvas.width, //The width
-		g.canvas.height, //The height
-	);
-
-	gameScene.addChild(space);
+	//gameScene.addChild(space);
 
 	aliens = g.group();
 	missiles = g.group();
 	meteors = g.group();
+	gameScene.addChild(aliens);
+	gameScene.addChild(missiles);
+	gameScene.addChild(meteors);
 
 	ship = g.sprite("art/space_ship.png");
 	gameScene.addChild(ship);
@@ -169,5 +189,5 @@ function setup() {
 	};
 
 	timer = 0;
-	g.state = queSound;
+	g.state = startg;
 }

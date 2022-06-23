@@ -28,6 +28,9 @@ let content = [
 	"art/meteor1c.png",
 	"b/start_up.png",
 	"b/start_down.png",
+	"sfx/8bit_bomb_explosion.wav",
+	"font/PetMe64",
+	"music/briefing.ogg",
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
@@ -36,4 +39,4 @@ g.scaleToWindow();
 g.start();
 
 //Declare any variables that need to be used in more than one function
-let ship, aliens, missiles, meteors, score, timer,loopStatus, loop, speed, gameScene, music, title;
+let ship, aliens, missiles, meteors, score, timer,loopStatus, loop, speed, gameScene, music, title, explosion1, explosion2, menuMusic;

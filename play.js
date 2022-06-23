@@ -38,6 +38,9 @@ function play() {
 		missiles.children.forEach(missile => {
 			let missileHit2 = g.hit(meteor, missile)
 			if (missileHit2) {
+				explosion2.pan = (meteor.x-540) /540;
+				explosion2.volume = 0.4;
+				explosion2.play();
 				console.log("hit2")
 				//aliens.removeChild(alien);
 				missiles.removeChild(missile);
@@ -67,10 +70,17 @@ function play() {
 	//console.log(aliens.children)
 	aliens.children.forEach(alien => {
 		g.move(alien);
+		
+		if (alien.y > 2000) {
+			g.state = end;
+		}
 
 		missiles.children.forEach(missile => {
 			let missileHit = g.hit(alien, missile)
 			if (missileHit) {
+				explosion1.pan = (alien.x-540) /540;
+				explosion1.volume = 2;
+				explosion1.play();
 				console.log("hit")
 				aliens.removeChild(alien);
 				missiles.removeChild(missile);
@@ -82,14 +92,14 @@ function play() {
 					alien.y, //The particle’s starting y position
 					() => g.sprite("art/boom.png"), //Particle function
 					g.stage, //The container group to add it to
-					20, //Number of particles
+					10, //Number of particles
 					0.1, //Gravity
 					true, //Random spacing
 					0, 6.28, //Min/max angle
-					40, 100, //Min/max size
+					20, 50, //Min/max size
 					1, 4, //Min/max speed
 					0.005, 0.01, //Min/max scale speed
-					0.005, 0.01, //Min/max alpha speed
+					0.01, 0.015, //Min/max alpha speed
 					0.05, 0.1 //Min/max rotation speed
 				);
 
