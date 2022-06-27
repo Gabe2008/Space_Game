@@ -26,11 +26,13 @@ let content = [
 	"art/boom.png",
 	"art/boom2.png",
 	"art/meteor1c.png",
-	"b/start_up.png",
-	"b/start_down.png",
+	"b/start2_up.png",
+	"b/start2_down.png",
+	"b/start2_over.png",
 	"sfx/8bit_bomb_explosion.wav",
 	"font/PetMe64",
 	"music/briefing.ogg",
+	"art/title_text.png"
 ];
 
 let g = hexi(1080, 1920, setup, content, load);

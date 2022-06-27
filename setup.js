@@ -13,15 +13,18 @@ function setup() {
 	soundScene = g.group();
 	endScene = g.group();
 
-	title = g.text("Space_Game", "20px PetMe64", "00FF00", g.canvas.width / 2, g.canvas.height / 2);
+	//title = g.text("Space_Game", "20px PetMe64", "00FF00", g.canvas.width / 2, g.canvas.height / 2);
+	title = g.sprite("art/titletext.png");
+	title.setPosition(g.canvas.width / 2, g.canvas.height / 2);
 	title.anchor.set(0.5, 0.5);
-	title.scale.set(5);
+	title.scale.set(2);
 	let titlePulse = g.pulse(title, 60, 0);
 	soundScene.addChild(title);
 
 	let start = g.button([
-		"b/start_up.png",
-		"b/start_down.png"
+		"b/start2_up.png",
+		"b/start2_over.png",
+		"b/start2_down.png"
 	]);
 
 	music = g.sound("music/gameloop.mp3");
@@ -37,7 +40,7 @@ function setup() {
 	menuMusic.fadeIn(0.5);
 
 	soundScene.addChild(start);
-	start.scale.set(3, 3);
+	start.scale.set(1.7, 1.7);
 	start.setPosition(g.canvas.width / 2, g.canvas.height / 2 + 2000);
 	start.anchor.set(0.5, 0.5);
 	let startSlide = g.slide(start, start.x, g.canvas.height / 2 + 200, 120, "bounce 5 -5", false, 0);
