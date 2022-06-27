@@ -14,7 +14,7 @@ function setup() {
 	endScene = g.group();
 
 	//title = g.text("Space_Game", "20px PetMe64", "00FF00", g.canvas.width / 2, g.canvas.height / 2);
-	title = g.sprite("art/titletext.png");
+	title = g.sprite("art/titleText.png");
 	title.setPosition(g.canvas.width / 2, g.canvas.height / 2);
 	title.anchor.set(0.5, 0.5);
 	title.scale.set(2);

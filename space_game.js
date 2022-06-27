@@ -32,7 +32,7 @@ let content = [
 	"sfx/8bit_bomb_explosion.wav",
 	"font/PetMe64",
 	"music/briefing.ogg",
-	"art/title_text.png"
+	"art/titleText.png"
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
