@@ -18,22 +18,26 @@ function play() {
 
 	meteors.children.forEach(meteor => {
 		g.move(meteor);
+		let shipHit1 = g.hit(meteor, ship)
+		if (shipHit1) {
+			g.state = end;
+		}
 
-		g.createParticles(
+		/*g.createParticles(
 			meteor.x, //The particle’s starting x position
-			meteor.y, //The particle’s starting y position
+			meteor.y -5, //The particle’s starting y position
 			() => g.sprite("art/boom.png"), //Particle function
 			g.stage, //The container group to add it to
-			1, //Number of particles
+			2, //Number of particles
 			-0.3, //Gravity
 			true, //Random spacing
 			0, 6.28, //Min/max angle
 			20, 60, //Min/max size
 			1, 4, //Min/max speed
 			0.005, 0.01, //Min/max scale speed
-			0.005, 0.1, //Min/max alpha speed
+			0.005, 1, //Min/max alpha speed
 			0.05, 0.1 //Min/max rotation speed
-		);
+		);*/
 
 		missiles.children.forEach(missile => {
 			let missileHit2 = g.hit(meteor, missile)
@@ -49,7 +53,7 @@ function play() {
 
 				g.createParticles(
 					meteor.x, //The particle’s starting x position
-					meteor.y, //The particle’s starting y position
+					meteor.y+meteor.width, //The particle’s starting y position
 					() => g.sprite("art/boom2.png"), //Particle function
 					g.stage, //The container group to add it to
 					10, //Number of particles
@@ -58,7 +62,7 @@ function play() {
 					0, 6.28, //Min/max angle
 					20, 60, //Min/max size
 					1, 4, //Min/max speed
-					0.005, 0.01, //Min/max scale speed
+					0.005, 0.1, //Min/max scale speed
 					0.005, 0.01, //Min/max alpha speed
 					0.05, 0.1 //Min/max rotation speed
 				);
@@ -112,20 +116,20 @@ function play() {
 	//console.log(Math.floor(timer));
 
 	if (timer - ufoSpawn > ufoInterval) {
-		spawn(random(100, 980, true), 0, 6, 3, "art/ufo_alien.png", aliens, 0.5, 0.5)
+		spawn(random(100, 980, true), -200, 6, 3, "art/ufo_alien.png", aliens, 0.5, 0.5)
 		ufoSpawn = timer;
 		ufoInterval = random(0, 3, false);
 		//console.log(ufoSpawn);
 	}
 
 	if (timer - a1Spawn > a1Int) {
-		spawn(random(100, 980, true), 0, 5, 1.2, "art/alien_1.png", aliens, 0.5, 0.5)
+		spawn(random(100, 980, true), -200, 5, 1.2, "art/alien_1.png", aliens, 0.5, 0.5)
 		a1Spawn = timer;
 		a1Int = random(2, 4, false);
 	}
 
 	if (timer - meteorSpawn > meteorI) {
-		spawn(random(100, 980, true), 0, 8, 1, "art/meteor1c.png", meteors, 0.5, 0)
+		spawn(random(100, 980, true), -200, 8, 1, "art/meteor1c.png", meteors, 0.5, 0)
 		meteorSpawn = timer;
 		meteorI = random(0, 6, false);
 	}

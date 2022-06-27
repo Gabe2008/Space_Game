@@ -52,7 +52,7 @@ function setup() {
 		gameScene.visible = true;
 		soundScene.visible = false;
 		g.state = play;
-		start.destroy;
+		start.x = 10000000000;
 	};
 
 	//gameScene.addChild(space);
@@ -66,7 +66,7 @@ function setup() {
 
 	ship = g.sprite("art/space_ship.png");
 	gameScene.addChild(ship);
-	ship.setPosition(g.canvas.width / 2, g.canvas.height - 450);
+	ship.setPosition(g.canvas.width / 2, g.canvas.height - 150);
 	ship.anchor.set(0.5, 0.5);
 	ship.scale.set(2, 2)
 	//ship.scale.set(10, 10)
@@ -80,6 +80,7 @@ function setup() {
 
 	//speed = 10;
 
+	/*
 	let left = g.button([
 		"b/left_up.png",
 		"b/left_down.png"
@@ -125,11 +126,12 @@ function setup() {
 
 		}
 	};
+	*/
 
 	let laserSound = g.sound("sfx/laser1.wav");
 	//gameScene.addChild(laserSound);
 
-	let shoot = g.button([
+	/*let shoot = g.button([
 		"b/shoot_up.png",
 		"b/shoot_down.png"
 	]);
@@ -139,7 +141,7 @@ function setup() {
 	shoot.setPosition(g.canvas.width / 2, 1750);
 	shoot.anchor.set(0.5, 0.5);
 
-	let lastShot = 0
+	*/let lastShot = 0/*
 
 	shoot.press = function () {
 		if (timer - lastShot > 0.3) {
@@ -152,6 +154,7 @@ function setup() {
 			console.log(lastShot)
 		}
 	};
+	*/
 
 	let leftArrow = g.keyboard(37),
 		spaceKey = g.keyboard(32),
