@@ -1,3 +1,5 @@
+//Sprite Spawn Variables
+
 let ufoSpawn = 0
 let ufoInterval = 2
 
@@ -7,15 +9,20 @@ let a1Int = 3
 let meteorSpawn = 0
 let meteorI = 0
 
+
 function play() {
 	//console.log(ship.vx);
+
+	//Update Ship
 	g.move(ship);
 	let shipScreen = g.contain(ship, g.stage, false);
 
+	//Update Missile
 	missiles.children.forEach(missile => {
 		g.move(missile);
 	});
 
+	//Update Meateors
 	meteors.children.forEach(meteor => {
 		g.move(meteor);
 		let shipHit1 = g.hit(meteor, ship)
@@ -42,8 +49,8 @@ function play() {
 		missiles.children.forEach(missile => {
 			let missileHit2 = g.hit(meteor, missile)
 			if (missileHit2) {
-				explosion2.pan = (meteor.x-540) /540;
-				explosion2.volume = 0.4;
+				explosion2.pan = (meteor.x - 540) / 540;
+				explosion2.volume = 2;
 				explosion2.play();
 				console.log("hit2")
 				//aliens.removeChild(alien);
@@ -53,7 +60,7 @@ function play() {
 
 				g.createParticles(
 					meteor.x, //The particle’s starting x position
-					meteor.y+meteor.width, //The particle’s starting y position
+					meteor.y + meteor.width, //The particle’s starting y position
 					() => g.sprite("art/boom2.png"), //Particle function
 					g.stage, //The container group to add it to
 					10, //Number of particles
@@ -71,10 +78,11 @@ function play() {
 		});
 	});
 
-	//console.log(aliens.children)
+
+	//Update Aliens
 	aliens.children.forEach(alien => {
 		g.move(alien);
-		
+
 		if (alien.y > 2000) {
 			g.state = end;
 		}
@@ -82,7 +90,7 @@ function play() {
 		missiles.children.forEach(missile => {
 			let missileHit = g.hit(alien, missile)
 			if (missileHit) {
-				explosion1.pan = (alien.x-540) /540;
+				explosion1.pan = (alien.x - 540) / 540;
 				explosion1.volume = 2;
 				explosion1.play();
 				console.log("hit")
@@ -111,10 +119,14 @@ function play() {
 		});
 	});
 
-	space.tileY += 10;
-	timer += 1 / 60;
-	//console.log(Math.floor(timer));
 
+	//Move Background
+	space.tileY += 10;
+
+	//Increment timer (60 FPS)
+	timer += 1 / 60;
+
+	//Random Spawn Time
 	if (timer - ufoSpawn > ufoInterval) {
 		spawn(random(100, 980, true), -200, 6, 3, "art/ufo_alien.png", aliens, 0.5, 0.5)
 		ufoSpawn = timer;
