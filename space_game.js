@@ -14,6 +14,8 @@ let content = [
 	"buttons/right_up.png",
 	//Music from Zapsplat.com
 	"music/gameloop.mp3",
+	//Music by congusbongus
+	"music/briefing.ogg",
 	//New Mobile Buttons
 	"b/left_down.png",
 	"b/left_up.png",
@@ -30,14 +32,25 @@ let content = [
 	"music/nightmare_intro.mp3",
 	"music/nightmare_loop.mp3",
 	//Font is NAVILL
+	//Title Screen
 	"b/start2_up.png",
 	"b/start2_down.png",
 	"b/start2_over.png",
 	"art/titleText.png",
+	//Score
+	"N/0.png",
+	"N/1.png",
+	"N/2.png",
+	"N/3.png",
+	"N/4.png",
+	"N/5.png",
+	"N/6.png",
+	"N/7.png",
+	"N/8.png",
+	"N/9.png",
 	//Sound by Luke.RUSTLTD
 	"sfx/8bit_bomb_explosion.wav",
-	//Music by congusbongus
-	"music/briefing.ogg",
+	
 ];
 
 let g = hexi(1080, 1920, setup, content, load);
@@ -46,4 +59,4 @@ g.scaleToWindow();
 g.start();
 
 //Declare any variables that need to be used in more than one function
-let ship, aliens, missiles, meteors, score, timer, loopStatus, loop, speed, gameScene, music, title, explosion1, explosion2, menuMusic;
+let ship, aliens, missiles, meteors, score, timer, loopStatus, loop, speed, gameScene, music, title, explosion1, explosion2, menuMusic, n1, n2, n3;

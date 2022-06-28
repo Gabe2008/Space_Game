@@ -1,8 +1,9 @@
-function spawn(x, y, vy, scale, texture, group, ax, ay) {
+function spawn(x, y, vy, w, h, texture, group, ax, ay) {
 	let sprite = g.sprite(texture);
 	sprite.setPosition(x, y);
 	sprite.vy = vy;
 	sprite.anchor.set(ax, ay);
-	sprite.scale.set(scale,scale)
+	sprite.height = h;
+	sprite.width = w;
 	group.addChild(sprite);
 }
