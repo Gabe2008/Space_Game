@@ -13,6 +13,7 @@ function setup() {
 	aliens = g.group();
 	missiles = g.group();
 	meteors = g.group();
+	points = g.group();
 	gameScene.addChild(aliens);
 	gameScene.addChild(missiles);
 	gameScene.addChild(meteors);
@@ -38,7 +39,8 @@ function setup() {
 	title = g.sprite("art/titleText.png");
 	title.setPosition(g.canvas.width / 2, g.canvas.height / 2);
 	title.anchor.set(0.5, 0.5);
-	title.scale.set(2);
+	title.width = 1000;
+	title.height = 1000;
 	let titlePulse = g.pulse(title, 60, 0);
 	startScene.addChild(title);
 
@@ -48,7 +50,8 @@ function setup() {
 		"b/start2_down.png"
 	]);
 
-	start.scale.set(1.7, 1.7);
+	start.width = 850;
+	start.height = 204;
 	start.setPosition(g.canvas.width / 2, g.canvas.height / 2 + 2000);
 	start.anchor.set(0.5, 0.5);
 	let startSlide = g.slide(start, start.x, g.canvas.height / 2 + 200, 120, "bounce 5 -5", false, 0);
@@ -69,7 +72,8 @@ function setup() {
 	gameScene.addChild(ship);
 	ship.setPosition(g.canvas.width / 2, g.canvas.height - 150);
 	ship.anchor.set(0.5, 0.5);
-	ship.scale.set(2, 2)
+	ship.width = 200;
+	ship.height = 200;
 
 	//Keyboard
 	let leftArrow = g.keyboard(37),
@@ -102,14 +106,14 @@ function setup() {
 		if (timer - lastShot > 0.3) {
 			//fire(ship.x, ship.y)
 			//now using better spawn command
-			spawn(ship.x, ship.y, -15, 1.2, "art/missile.png", missiles, 0.5, 0.5)
+			spawn(ship.x, ship.y, -15, 100, 100, "art/missile.png", missiles, 0.5, 0.5)
 
 			laserSound.play();
 			lastShot = timer;
 			console.log(lastShot)
 		}
 	};
-
+	
 	//Start Game
 	g.state = startg;
 }
