@@ -14,7 +14,9 @@ let numbers = [
 function uS(i1,i2,i3,i4,i5) {
 	
 	points.children.forEach(n => {
-		n.visible = false;
+		//n.visible = false;
+		points.removeChild(n);
+		n.destroy;
 	});
 	n1 = g.sprite(numbers[i1]);
 	n2 = g.sprite(numbers[i2]);
@@ -36,6 +38,6 @@ function uS(i1,i2,i3,i4,i5) {
 	n1.x = 	g.canvas.width - (n1.width*5)
 	n2.x = 	g.canvas.width - (n2.width*4)
 	n3.x = 	g.canvas.width - (n3.width*3)
-	n4.x = 	g.canvas.width - (n2.width*2)
-	n5.x = 	g.canvas.width - (n3.width*1)
+	n4.x = 	g.canvas.width - (n4.width*2)
+	n5.x = 	g.canvas.width - (n5.width*1)
 }
