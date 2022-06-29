@@ -14,9 +14,10 @@ function setup() {
 	missiles = g.group();
 	meteors = g.group();
 	points = g.group();
-	gameScene.addChild(aliens);
+	//gameScene.addChild(points);
+	//gameScene.addChild(aliens);
 	gameScene.addChild(missiles);
-	gameScene.addChild(meteors);
+	//gameScene.addChild(meteors);
 
 	//Variables
 	let lastShot = 0
@@ -24,16 +25,24 @@ function setup() {
 
 	//Sounds
 	let laserSound = g.sound("sfx/laser1.wav");
-	music = g.sound("music/gameloop.mp3");
+	//music = g.sound("music/gameloop.mp3");
+	music = g.sound("music/starfish.mp3");
 	music.loop = true;
 	music.volume = 0.4;
-	menuMusic = g.sound("music/briefing.ogg");
+	//menuMusic = g.sound("music/briefing.ogg");
+	menuMusic = g.sound("music/desertvibes.mp3");
 	menuMusic.loop = true;
 	menuMusic.volume = 0.7;
 	menuMusic.play();
 	menuMusic.fadeIn(0.5);
 	explosion1 = g.sound("sfx/8bit_bomb_explosion.wav");
 	explosion2 = g.sound("sfx/sfx_boom6.wav");
+	let click = g.sound("sfx/zipclick.mp3");
+	click.volume = 3;
+	let whoosh = g.sound("sfx/whoosh.wav");
+	lMusic = g.sound("music/ALEX.mp3");
+	lMusic.loop = true;
+	lMusic.volume = 2
 
 	//Start Screen
 	title = g.sprite("art/titleText.png");
@@ -44,7 +53,7 @@ function setup() {
 	let titlePulse = g.pulse(title, 60, 0);
 	startScene.addChild(title);
 
-	let start = g.button([
+	start = g.button([
 		"b/start2_up.png",
 		"b/start2_over.png",
 		"b/start2_down.png"
@@ -56,6 +65,10 @@ function setup() {
 	start.anchor.set(0.5, 0.5);
 	let startSlide = g.slide(start, start.x, g.canvas.height / 2 + 200, 120, "bounce 5 -5", false, 0);
 
+	start.over = function () {
+		click.play();
+	};
+	
 	start.release = function () {
 		menuMusic.fadeOut(0.5);
 		music.play();
@@ -64,6 +77,7 @@ function setup() {
 		startScene.visible = false;
 		g.state = play;
 		start.x = 10000000000;
+		//whoosh.play();
 	};
 	startScene.addChild(start);
 
@@ -113,6 +127,16 @@ function setup() {
 			console.log(lastShot)
 		}
 	};
+	
+	//Score Title
+	scoreT = g.sprite("art/score.png")
+	gameScene.addChild(scoreT);
+	scoreT.width = 250;
+	scoreT.height = 75;
+	scoreT.setPosition(g.canvas.width -500, 100);
+	
+	//Speed
+	speed = 0;
 	
 	//Start Game
 	g.state = startg;
