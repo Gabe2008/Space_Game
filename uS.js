@@ -11,18 +11,22 @@ let numbers = [
 	"N/9.png"
 ];
 
-function uS(i1,i2,i3,i4,i5) {
+function uS(b1, i1,i2,i3,i4,i5) {
 	
 	points.children.forEach(n => {
 		//n.visible = false;
 		points.removeChild(n);
 		n.destroy;
 	});
+	
+	boost1 = g.sprite("art/2x.png");
+	boost1.visible = b1;
 	n1 = g.sprite(numbers[i1]);
 	n2 = g.sprite(numbers[i2]);
 	n3 = g.sprite(numbers[i3]);
 	n4 = g.sprite(numbers[i4]);
 	n5 = g.sprite(numbers[i5]);
+	points.addChild(boost1)
 	points.addChild(n1)
 	points.addChild(n2)
 	points.addChild(n3)
