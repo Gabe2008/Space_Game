@@ -24,6 +24,15 @@ function end() {
 			alien.destroy;
 		}
 	});
+	
+	dosp.children.forEach(p => {
+		g.move(p);
+
+		if (p.y > 2000) {
+			dosp.removeChild(p);
+			p.destroy;
+		}
+	});
 	//uS(s1, s2, s3, s4, s5);
 	/*points.children.forEach(n => {
 		n.width = 200

@@ -14,7 +14,8 @@ function setup() {
 	missiles = g.group();
 	meteors = g.group();
 	points = g.group();
-	//gameScene.addChild(points);
+	dosp = g.group();
+	gameScene.addChild(points);
 	//gameScene.addChild(aliens);
 	gameScene.addChild(missiles);
 	//gameScene.addChild(meteors);
@@ -25,12 +26,16 @@ function setup() {
 
 	//Sounds
 	let laserSound = g.sound("sfx/laser1.wav");
+	laserSound.volume = 1
 	//music = g.sound("music/gameloop.mp3");
-	music = g.sound("music/starfish.mp3");
+	music = g.sound("music/Synthmania.wav")
+	//music = g.sound("music/starfish.mp3");
 	music.loop = true;
-	music.volume = 0.4;
+	music.volume = 0.01;
 	//menuMusic = g.sound("music/briefing.ogg");
-	menuMusic = g.sound("music/desertvibes.mp3");
+	//menuMusic = g.sound("music/desertvibes.mp3");
+	//menuMusic = g.sound("music/Synthmania.wav")
+	menuMusic = g.sound("music/ALEX.mp3");
 	menuMusic.loop = true;
 	menuMusic.volume = 0.7;
 	menuMusic.play();
@@ -38,11 +43,13 @@ function setup() {
 	explosion1 = g.sound("sfx/8bit_bomb_explosion.wav");
 	explosion2 = g.sound("sfx/sfx_boom6.wav");
 	let click = g.sound("sfx/zipclick.mp3");
-	click.volume = 3;
-	let whoosh = g.sound("sfx/whoosh.wav");
-	lMusic = g.sound("music/ALEX.mp3");
-	lMusic.loop = true;
-	lMusic.volume = 2
+	click.volume = 1.5;
+	//let whoosh = g.sound("sfx/whoosh.wav");
+	//lMusic = g.sound("music/ALEX.mp3");
+	//lMusic.loop = true;
+	//lMusic.volume = 2
+	coine = g.sound("sfx/coin.wav");
+	coine.volume = 5;
 
 	//Start Screen
 	title = g.sprite("art/titleText.png");

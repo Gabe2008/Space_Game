@@ -9,10 +9,18 @@ let a1Int = 3
 let meteorSpawn = 0
 let meteorI = 0
 
+let dospSpawn = 0
+let dospI = 10
+
 let pointUp = 1
 
 let distance = 0
 //let speed = 0
+
+let pointv = 5
+let dospc = -100
+
+let b1 = false
 
 function play() {
 	start.x = 10000000000;
@@ -35,7 +43,7 @@ function play() {
 	}
 	if (s2 > 9) {
 		s2 = 0
-		s1 =+ 1
+		s1 = +1
 	}
 	if (s1 > 9) {
 		s1 = 9
@@ -51,8 +59,20 @@ function play() {
 		//lMusic.fadeIn(3);
 
 	}
+
+	//2x Power Up
+	if (dospc - timer > -3) {
+		pointv = 10
+		b1 = true
+		console.log(timer,"true")
+	} else {
+		pointv = 5
+		b1 = false
+		console.log(timer,"false")
+	}
+
 	//console.log(s1,s2,s3)
-	uS(s1, s2, s3, s4, s5);
+	uS(b1, s1, s2, s3, s4, s5);
 
 	//console.log(ship.vx);
 
@@ -81,11 +101,11 @@ function play() {
 			explosion1.pan = (ship.x - 540) / 540;
 			explosion1.volume = 2;
 			explosion1.play();
-			lMusic.play();
+			//menuMusic.play();
 			music.fadeOut(2);
 			//music.pause();
 			//lMusic.play();
-			lMusic.fadeIn(3);
+			menuMusic.fadeIn(3);
 			g.createParticles(
 				ship.x, //The particle’s starting x position
 				ship.y, //The particle’s starting y position
@@ -158,18 +178,19 @@ function play() {
 		g.move(alien);
 
 		if (alien.y > 2000) {
-			lMusic.play();
+			//menuMusic.play();
 			music.fadeOut(2);
 			//music.pause();
 			//lMusic.play();
-			lMusic.fadeIn(3);
+			menuMusic.fadeIn(3);
 			g.state = end;
 		}
 
 		missiles.children.forEach(missile => {
 			let missileHit = g.hit(alien, missile)
 			if (missileHit) {
-				s5 += 5
+
+				s5 += pointv
 				explosion1.pan = (alien.x - 540) / 540;
 				explosion1.volume = 2;
 				explosion1.play();
@@ -198,6 +219,40 @@ function play() {
 			}
 		});
 	});
+	//Update 2x Boost
+	dosp.children.forEach(p => {
+		g.move(p);
+
+		if (p.y > 2000) {
+			dosp.removeChild(p);
+			p.destroy;
+		}
+
+		let collect = g.hit(p, ship)
+		if (collect) {
+			console.log("dos2c")
+			coine.play();
+			dosp.removeChild(p);
+			p.destroy;
+			dospc = timer
+			g.createParticles(
+				p.x, //The particle’s starting x position
+				p.y, //The particle’s starting y position
+				() => g.sprite("art/2x.png"), //Particle function
+				g.stage, //The container group to add it to
+				5, //Number of particles
+				0.1, //Gravity
+				true, //Random spacing
+				0, 6.28, //Min/max angle
+				20, 50, //Min/max size
+				1, 4, //Min/max speed
+				0.005, 0.01, //Min/max scale speed
+				0.01, 0.015, //Min/max alpha speed
+				0.05, 0.1 //Min/max rotation speed
+			);
+
+		}
+	});
 
 
 	//Move Background
@@ -217,7 +272,7 @@ function play() {
 	}
 
 	if (timer - a1Spawn > a1Int) {
-		spawn(random(100, 980, true), -200, 5 + speed, 100, 100, "art/alien_1.png", aliens, 0.5, 0.5)
+		spawn(random(100, 980, true), -200, 5 + speed, 150, 150, "art/alien_1.png", aliens, 0.5, 0.5)
 		a1Spawn = timer;
 		a1Int = random(2, 4, false);
 	}
@@ -226,6 +281,12 @@ function play() {
 		spawn(random(100, 980, true), -200, 8 + speed, 100, 100, "art/meteor1c.png", meteors, 0.5, 0)
 		meteorSpawn = timer;
 		meteorI = random(0, 6, false);
+	}
+
+	if (timer - dospSpawn > dospI) {
+		spawn(random(100, 980, true), -200, 9 + speed, 100, 100, "art/2x.png", dosp, 0.5, 0.5)
+		dospSpawn = timer;
+		dospI = random(10, 20, false);
 	}
 
 
